@@ -2,6 +2,9 @@
 Shell scripts to help manage .env files within AWS 
 
 # AWS Policy Examples
+You can manage permissions to the parameters by limiting access to the role/instance profile or user base on policies that specify the app and/or the environment.
+
+The following are examples on how to restrict access via AWS CloudFormation Policies.
 ## Example CloudFormation to restrict user based on Application Name
 ```yaml
 Resources:
