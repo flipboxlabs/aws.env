@@ -15,7 +15,7 @@ if [ "" != "$OUTPUT" ]; then
     if [ "$OUTPUT" != "$INPUT" ]; then
         echo "$OUTPUT" > $OUTPUT_TEMP_FILEPATH
         diff -U1 --label "OLD .env" --label "NEW .env" $OUTPUT_TEMP_FILEPATH $DOT_ENV_FILE | sed "s/^-.*/`printf \"%s\" $FG_RED`&`printf \"%s\" $RESET`/;s/^+.*/`printf \"%s\" $FG_GREEN`&`printf \"%s\" $RESET`/;"
-        echo "${FG_RED}Are you sure you want to put this change? ${BOLD}(y|n)${RESET}"
+        echo "${FG_YELLOW}Are you sure you want to put this change? ${BOLD}(y|n)${RESET}"
         read -s PUSH;
         OVERWRITE=$(contains "${YES[@]}" "${PUSH}")
         if [ "$OVERWRITE" == "NO" ]; then

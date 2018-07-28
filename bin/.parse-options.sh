@@ -29,6 +29,11 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    -r|--region)
+    export AWS_DEFAULT_REGION="$2"
+    shift # past argument
+    shift # past value
+    ;;
     -d|--debug)
     DEBUG="YES"
     shift # past argument
@@ -52,12 +57,18 @@ help(){
     {
         echo "USAGE: $SCRIPT_NAME [options] <dot env file>"; \
             echo "OPTIONS:"; \
-            echo "      -p --profile"; \
-            echo "              AWS profile name to authenticate with"; \
             echo "      -a --app"; \
             echo "              Application Name or Elastic Beanstalk Application Name"; \
             echo "      -e --env"; \
             echo "              Environment Name or Elastic Beanstalk Environment Name"; \
+            echo "      -p --profile"; \
+            echo "              AWS profile name to authenticate with"; \
+            echo "      -r --region"; \
+            echo "              AWS region name"; \
+            echo "      -d --debug"; \
+            echo "              Show debug messaging"; \
+            echo "      -h --help"; \
+            echo "              Show this message"; \
     }
     EXIT_CODE=$1
 
@@ -122,6 +133,6 @@ if [ -z "${ENV}" ]; then
     exit 1;
 fi
 
-if [ $DEBUG == "YES" ]; then
+if [ "${DEBUG}" == "YES" ]; then
     debug "Parameter path: ${PARAMETER_PATH}"
 fi
