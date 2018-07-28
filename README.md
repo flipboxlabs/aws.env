@@ -52,9 +52,7 @@ Resources:
           - "ssm:PutParameter"
           - "ssm:DeleteParameter"
           - "ssm:DeleteParameters"
-          Resource:
-          - !Sub
-            - 'arn:aws:ssm:*:*:parameter/${ApplicationName}/*'
+          Resource: !Sub 'arn:aws:ssm:*:*:parameter/${ApplicationName}/*'
 ```
 
 ## Example CloudFormation to restrict user based on Application and Environment Name
@@ -73,9 +71,7 @@ Resources:
           - "ssm:PutParameter"
           - "ssm:DeleteParameter"
           - "ssm:DeleteParameters"
-          Resource:
-          - !Sub
-            - 'arn:aws:ssm:*:*:parameter/${ApplicationName}/${EnvironmentName}/*'
+          Resource: !Sub 'arn:aws:ssm:*:*:parameter/${ApplicationName}/${EnvironmentName}/*'
 ```
 
 
@@ -92,7 +88,5 @@ Resources:
           Action:
           - "ssm:GetParameters"
           - "ssm:GetParametersByPath"
-          Resource:
-          - !Sub
-            - 'arn:aws:ssm:*:*:parameter/${ApplicationName}/*'
+          Resource: !Sub 'arn:aws:ssm:*:*:parameter/${ApplicationName}/*'
 ```
