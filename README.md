@@ -14,22 +14,22 @@ The goal of these shell scripts is to make it easier to deploy environmental var
 ### Get: `sh bin/get-dotenv.sh`
 #### Print to stdout
 ```bash 
-sh bin/get-dotenv.sh --app TestApp --env TestApp-Dev
+bash bin/get-dotenv.sh --app TestApp --env TestApp-Dev
 ```
 #### Save `.env` to file
 ```bash
-sh bin/get-dotenv.sh --app TestApp --env TestApp-Dev .env
+bash bin/get-dotenv.sh --app TestApp --env TestApp-Dev .env
 ```
 *OR (of course)*
 ```bash
-sh bin/get-dotenv.sh --app TestApp --env TestApp-Dev > .env
+bash bin/get-dotenv.sh --app TestApp --env TestApp-Dev > .env
 ```
 
 ### Put: `sh bin/put-dotenv.sh`
 #### Put `.env` file
 To deploy the environmental variables, you can point `put-dotenv.sh` to the file that contains all of the needed environmental variables and it'll save the file as a whole to the aforementioned `/<app>/<env>/.env` path in the AWS Parameter Store. An example is very similar to `get-dotenv.sh`:
 ```bash 
-sh bin/put-dotenv.sh --profile flipbox --app TestApp --env TestApp-Dev .env
+bash bin/put-dotenv.sh --profile flipbox --app TestApp --env TestApp-Dev .env
 ```
 
 # AWS Policy Examples
