@@ -1,4 +1,4 @@
-# dotenv.sh
+# aws.env
 Shell scripts to help manage .env files within AWS.
 
 The goal of these shell scripts is to make it easier to deploy environmental variables to Amazon Web Services (AWS) environments. Point the shell script to a `.env` and deploy it to the AWS Parameter Store. `put-dotenv.sh` deploys this file to the AWS Parameter Store based on the application and environment names you choose. The path looks something like this: `/AppName/EnvName/.env`.
