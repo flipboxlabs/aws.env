@@ -6,4 +6,4 @@ source "${DIR}/.parse-options.bash"
 
 ENV_NAME=$POSITIONAL;
 
-delete_parameter $ENV_NAME
+delete_parameter "$ENV_NAME"

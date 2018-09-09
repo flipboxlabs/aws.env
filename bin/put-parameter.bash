@@ -9,4 +9,10 @@ ENV_VALUE=${POSITIONAL[1]};
 
 debug "Saving ${ENV_NAME}"
 
-put_parameter $ENV_NAME $ENV_VALUE
+if [ "" == "${ENV_VALUE}" ]; then
+    read -sp "${FG_CYAN}Parameter Value: ${RESET}" ENV_VALUE
+fi
+
+debug "$ENV_VALUE"
+
+put_parameter "$ENV_NAME" "$ENV_VALUE"

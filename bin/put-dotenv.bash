@@ -32,8 +32,8 @@ while IFS='' read -r LINE || [[ -n "$LINE" ]]; do
         IFS='=' read -r -a NAME_VALUE <<< "$CLEAN_LINE"
 
         #Clean them up and set them
-        NAME=$(clean_parameter ${NAME_VALUE[0]})
-        VALUE=$(clean_parameter ${NAME_VALUE[1]})
+        NAME=$(clean_parameter "${NAME_VALUE[0]}")
+        VALUE=$(clean_parameter "${NAME_VALUE[1]}")
 
         #Grab the old value
         OLD_VALUE=$(get_parameter_from_local $NAME)
@@ -47,10 +47,10 @@ while IFS='' read -r LINE || [[ -n "$LINE" ]]; do
             if [ "${VALUE}" == "" ]; then
                 #Delete it if the value's empty
                 debug "'$NAME' value is empty, deleting"
-                delete_parameter $NAME
+                delete_parameter "$NAME"
             else
                 #Put it
-                put_parameter $NAME $VALUE
+                put_parameter "$NAME" "$VALUE"
             fi
         fi
     fi
