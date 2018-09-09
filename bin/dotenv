@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+SCRIPT_NAME=`basename "$0"`
+
+#print help
+help(){
+    {
+        echo "USAGE: $SCRIPT_NAME <subcommand> [options] "; \
+            echo "SUBCOMMAND:"; \
+            echo "      put-dotenv"; \
+            echo "      get-dotenv"; \
+            echo "      delete-parameter"; \
+            echo "      put-parameter"; \
+            echo "      help"; \
+            echo "OPTIONS:"; \
+            echo "      -a --app"; \
+            echo "              Application Name or Elastic Beanstalk Application Name"; \
+            echo "      -e --env"; \
+            echo "              Environment Name or Elastic Beanstalk Environment Name"; \
+            echo "      -p --profile"; \
+            echo "              AWS profile name to authenticate with"; \
+            echo "      -r --region"; \
+            echo "              AWS region name"; \
+            echo "      -d --debug"; \
+            echo "              Show debug messaging"; \
+            echo "      -h --help"; \
+            echo "              Show this message"; \
+    }
+    EXIT_CODE=$1
+
+    if [ -z "$EXIT_CODE" ]; then
+        EXIT_CODE=0
+    fi
+
+    exit $EXIT_CODE;
+}
+
+if [ $# -gt 0 ]; then
+    if [ "$1" == "put-dotenv" ]; then
+        shift 1
+        bash $DIR/put-dotenv.bash $@
+    elif [ "$1" == "get-dotenv" ]; then
+        shift 1
+        bash $DIR/get-dotenv.bash $@
+    elif [ "$1" == "delete-parameter" ]; then
+        shift 1
+        bash $DIR/delete-parameter.bash $@
+    elif [ "$1" == "put-parameter" ]; then
+        shift 1
+        bash $DIR/put-parameter.bash $@
+    elif [ "$1" == "help" ]; then
+        help 0
+    fi
+fi

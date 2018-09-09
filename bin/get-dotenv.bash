@@ -1,7 +1,10 @@
 #!/bin/bash
 
+DOT_ENV_FILE=$POSITIONAL
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source "${DIR}/.parse-options.sh"
+source "${DIR}/.dotenv-help.bash"
+source "${DIR}/.parse-options.bash"
 
 
 #run the command
