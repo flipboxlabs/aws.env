@@ -8,7 +8,7 @@ The goal of these shell scripts is to make it easier to deploy environmental var
 - `-a`|`--app` The name of your application
 - `-e`|`--env` The name of your environment, ie, production, development, etc
 - `-p`|`--profile` The aws profile used for authentication
-- `-r`|`--region` Show debug messaging
+- `-r`|`--region` The aws region
 - `-d`|`--debug` Output debug
 - `-h`|`--help` Show help message
 ### Get: `./bin/dotenv get-dotenv`
