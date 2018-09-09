@@ -1,7 +1,7 @@
 # aws.env
 Shell scripts to help manage .env files within AWS.
 
-The goal of these shell scripts is to make it easier to deploy environmental variables to Amazon Web Services (AWS) environments. Point the shell script to a `.env` and deploy it to the AWS Parameter Store. `put-dotenv.sh` deploys this file to the AWS Parameter Store based on the application and environment names you choose. The path looks something like this: `/AppName/EnvName/.env`.
+The goal of these shell scripts is to make it easier to deploy environmental variables to Amazon Web Services (AWS) environments. Point the shell script to a `.env` and deploy it to the AWS Parameter Store. `dotenv put-dotenv` deploys this file to the AWS Parameter Store based on the application and environment names you choose. The path looks something like this: `/AppName/EnvName/.env`.
 
 ## Usage
 ### Options
@@ -11,25 +11,37 @@ The goal of these shell scripts is to make it easier to deploy environmental var
 - `-r`|`--region` Show debug messaging
 - `-d`|`--debug` Output debug
 - `-h`|`--help` Show help message
-### Get: `sh bin/get-dotenv.sh`
+### Get: `./bin/dotenv get-dotenv`
 #### Print to stdout
 ```bash 
-bash bin/get-dotenv.sh --app TestApp --env TestApp-Dev
+./bin/dotenv get-dotenv --app TestApp --env TestApp-Dev
 ```
 #### Save `.env` to file
 ```bash
-bash bin/get-dotenv.sh --app TestApp --env TestApp-Dev .env
+./bin/dotenv get-dotenv --app TestApp --env TestApp-Dev .env
 ```
 *OR (of course)*
 ```bash
-bash bin/get-dotenv.sh --app TestApp --env TestApp-Dev > .env
+./bin/dotenv get-dotenv --app TestApp --env TestApp-Dev > .env
 ```
 
-### Put: `sh bin/put-dotenv.sh`
+### Put: `./bin/dotenv put-dotenv`
 #### Put `.env` file
-To deploy the environmental variables, you can point `put-dotenv.sh` to the file that contains all of the needed environmental variables and it'll save the file as a whole to the aforementioned `/<app>/<env>/.env` path in the AWS Parameter Store. An example is very similar to `get-dotenv.sh`:
+To deploy the environmental variables, you can point `dotenv put-dotenv` to the file that contains all of the needed environmental variables and it'll save the file as a whole to the aforementioned `/<app>/<env>/.env` path in the AWS Parameter Store. An example is very similar to `dotenv get-dotenv`:
 ```bash 
-bash bin/put-dotenv.sh --profile flipbox --app TestApp --env TestApp-Dev .env
+./bin/dotenv put-dotenv --profile flipbox --app TestApp --env TestApp-Dev .env
+```
+
+### Put Parameter: `./bin/dotenv put-parameter`
+#### Put a single parameter
+```bash 
+./bin/dotenv put-parameter --profile flipbox --app TestApp --env TestApp-Dev DB_PASSWORD myDbSecret
+```
+
+### Delete Parameter: `./bin/dotenv delete-parameter`
+#### Delete a single parameter
+```bash 
+./bin/dotenv delete-parameter --profile flipbox --app TestApp --env TestApp-Dev DB_PASSWORD
 ```
 
 # AWS Policy Examples
