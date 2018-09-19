@@ -40,7 +40,6 @@ case $key in
     -d|--debug)
     DEBUG="YES"
     shift # past argument
-    shift # past value
     ;;
     *)    # unknown option
     POSITIONAL+=("$1") # save it in an array for later. This should be the .env file.

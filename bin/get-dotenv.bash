@@ -1,11 +1,11 @@
 #!/bin/bash
 
-DOT_ENV_FILE=$POSITIONAL
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "${DIR}/.dotenv-help.bash"
 source "${DIR}/.parse-options.bash"
 
+DOT_ENV_FILE=$POSITIONAL
 
 #run the command
 OUTPUT=$(get_dotenv)
