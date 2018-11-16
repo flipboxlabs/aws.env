@@ -1,3 +1,4 @@
+
 #get file from the param store
 #deprecated
 get_dotenv() {
@@ -67,6 +68,52 @@ put_parameter() {
         --overwrite
 }
 
+put_parameters_by_dotenv() {
+
+    DOT_ENV_FILE=$1
+
+    # cache the parameters and pull them down into a local variable
+    get_parameters
+
+    #Line by line loop thru the dot env file
+    while IFS='' read -r LINE || [[ -n "$LINE" ]]; do
+
+        #skip the comments and clean up any spaces at the begining
+        CLEAN_LINE="$(echo -e "${LINE}" | sed -e 's/^[[:space:]]*//' | sed '/#/s/^#.*//g')"
+
+        #Is the line empty? If not continue
+        if [ "" != "$CLEAN_LINE" ]; then
+
+            #There should be an env variable at this point
+            #Split it on the `=` sign
+            IFS='=' read -r -a NAME_VALUE <<< "$CLEAN_LINE"
+
+            #Clean them up and set them
+            NAME=$(clean_parameter "${NAME_VALUE[0]}")
+            VALUE=$(clean_parameter "${NAME_VALUE[1]}")
+
+            #Grab the old value
+            OLD_VALUE=$(get_parameter_from_local $NAME)
+
+            #If the values are the same, don't push
+            if [ "${OLD_VALUE}" != "${VALUE}" ] ; then
+                debug "Updating ${NAME}=${VALUE}"
+                debug "OLD: ${OLD_VALUE}"
+                debug "NEW: ${VALUE}"
+
+                if [ "${VALUE}" == "" ]; then
+                    #Delete it if the value's empty
+                    debug "'$NAME' value is empty, deleting"
+                    delete_parameter "$NAME"
+                else
+                    #Put it
+                    put_parameter "$NAME" "$VALUE"
+                fi
+            fi
+        fi
+    done < $DOT_ENV_FILE
+}
+
 required_options() {
     echo ""
     echo 'error: -a|-app parameter is required. Example `--app App`'
@@ -90,5 +137,7 @@ contains() {
 }
 
 debug(){
-    printf "${FG_YELLOW}%s [debug] %s \n${RESET}" "`date +'%Y-%m-%d %H:%M:%S'`" "$1"
+    if [ "${DEBUG}" == "YES" ]; then
+        printf "${FG_YELLOW}%s [debug] %s \n${RESET}" "`date +'%Y-%m-%d %H:%M:%S'`" "$1"
+    fi
 }

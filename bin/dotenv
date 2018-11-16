@@ -10,6 +10,7 @@ help(){
             echo "SUBCOMMAND:"; \
             echo "      put-dotenv"; \
             echo "      get-dotenv"; \
+            echo "      update"; \
             echo "      delete-parameter"; \
             echo "      put-parameter"; \
             echo "      help"; \
@@ -43,6 +44,9 @@ if [ $# -gt 0 ]; then
     elif [ "$1" == "get-dotenv" ]; then
         shift 1
         bash $DIR/get-dotenv.bash $@
+    elif [ "$1" == "update" ]; then
+        shift 1
+        bash $DIR/update-dotenv.bash $@
     elif [ "$1" == "delete-parameter" ]; then
         shift 1
         bash $DIR/delete-parameter.bash $@
