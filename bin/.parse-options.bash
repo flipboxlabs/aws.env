@@ -7,6 +7,10 @@ source "${DIR}/.methods.bash"
 POSITIONAL=()
 SCRIPT_NAME=`basename "$0"`
 
+#env output dockerfile options
+ENV_OUTPUT_DOCKERFILE="dockerfile"
+ENV_OUTPUT_DEFAULT="default"
+
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -37,6 +41,11 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    -o|--output)
+    ENV_OUTPUT="${2:-default}"
+    shift # past argument
+    shift # past value
+    ;;
     -d|--debug)
     DEBUG="YES"
     shift # past argument
@@ -52,6 +61,8 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 PARAMETER_PATH="/${APP}/${ENV}/.env"
 YES=("YES" "Y" "yes" "y")
 NO=("NO" "N" "no" "n")
+
+ENV_OUTPUT_OPTIONS=($ENV_OUTPUT_DEFAULT $ENV_OUTPUT_DOCKERFILE)
 
 if [ "$HELP" == "YES" ]; then
     help 0;

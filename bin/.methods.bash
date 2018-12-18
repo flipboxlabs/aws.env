@@ -1,19 +1,22 @@
 
 #get file from the param store
-#deprecated
 get_dotenv() {
+    # populates PARAMETERS
     get_parameters
     for row in $(echo "${PARAMETERS}" | jq -r '.Parameters[] | @base64'); do
         _jq() {
          echo ${row} | base64 --decode | jq -r ${1}
         }
 
-    echo $(path_to_name "$(_jq '.Name')")=\"$(_jq '.Value')\"
+        if [ "$ENV_OUTPUT" == "$ENV_OUTPUT_DOCKERFILE" ]; then
+            echo ENV $(path_to_name "$(_jq '.Name')") \"$(_jq '.Value')\"
+        else
+            echo $(path_to_name "$(_jq '.Name')")=\"$(_jq '.Value')\"
+        fi
     done
 }
 
 #put entire file
-#deprecated
 put_dotenv() {
     #run the command
     aws ssm put-parameter --name $PARAMETER_PATH \

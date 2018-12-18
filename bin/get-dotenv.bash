@@ -7,6 +7,8 @@ source "${DIR}/.parse-options.bash"
 
 DOT_ENV_FILE=$POSITIONAL
 
+debug $ENV_OUTPUT
+
 #run the command
 OUTPUT=$(get_dotenv)
 
