@@ -7,10 +7,25 @@ The goal of these shell scripts is to make it easier to deploy environmental var
 ### Options
 - `-a`|`--app` The name of your application
 - `-e`|`--env` The name of your environment, ie, production, development, etc
+- `-o`|`--output` Modify output format (Options: default, dockerfile)
 - `-p`|`--profile` The aws profile used for authentication
 - `-r`|`--region` The aws region
 - `-d`|`--debug` Output debug
 - `-h`|`--help` Show help message
+
+#### Update `.env` file
+This is the most useful command. This will check for any existing .env variable within the Parameter Store and pull them into a file that you can edit with vim. Once you are done modifying the file, a diff will be presented. If you like the diff, say yes to continue to push the variable changes. 
+
+Notice: Deletes currently do not work. If you remove an env var from the file that env var will _NOT_ be deleted. This is a known issue. Use the delete subcommand (`delete-parameter`) when you need to remove items.
+
+```bash
+./bin/dotenv update --app TestApp --env TestApp-Dev
+```
+*OR (of course)*
+```bash
+./bin/dotenv get-dotenv --app TestApp --env TestApp-Dev > .env
+```
+
 ### Get: `./bin/dotenv get-dotenv`
 #### Print to stdout
 ```bash 
@@ -102,3 +117,6 @@ Resources:
           - "ssm:GetParametersByPath"
           Resource: !Sub 'arn:aws:ssm:*:*:parameter/${ApplicationName}/*'
 ```
+
+## TODO
+- Add remove/delete parameters to the `update` subcommand.
