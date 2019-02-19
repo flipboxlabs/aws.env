@@ -9,6 +9,7 @@ SCRIPT_NAME=`basename "$0"`
 
 #env output dockerfile options
 ENV_OUTPUT_DOCKERFILE="dockerfile"
+ENV_OUTPUT_BASH_EXPORT="export"
 ENV_OUTPUT_DEFAULT="default"
 
 while [[ $# -gt 0 ]]
@@ -62,7 +63,7 @@ PARAMETER_PATH="/${APP}/${ENV}/.env"
 YES=("YES" "Y" "yes" "y")
 NO=("NO" "N" "no" "n")
 
-ENV_OUTPUT_OPTIONS=($ENV_OUTPUT_DEFAULT $ENV_OUTPUT_DOCKERFILE)
+ENV_OUTPUT_OPTIONS=($ENV_OUTPUT_DEFAULT $ENV_OUTPUT_BASH_EXPORT $ENV_OUTPUT_DOCKERFILE)
 
 if [ "$HELP" == "YES" ]; then
     help 0;

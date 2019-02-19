@@ -10,6 +10,8 @@ get_dotenv() {
 
         if [ "$ENV_OUTPUT" == "$ENV_OUTPUT_DOCKERFILE" ]; then
             echo ENV $(path_to_name "$(_jq '.Name')") \"$(_jq '.Value')\"
+        elif [ "$ENV_OUTPUT" == "$ENV_OUTPUT_BASH_EXPORT" ]; then
+            echo export $(path_to_name "$(_jq '.Name')")=\"$(_jq '.Value')\"
         else
             echo $(path_to_name "$(_jq '.Name')")=\"$(_jq '.Value')\"
         fi
