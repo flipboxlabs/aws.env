@@ -121,8 +121,9 @@ put_parameters_by_dotenv() {
 
 required_options() {
     echo ""
-    echo 'error: -a|-app parameter is required. Example `--app App`'
-    echo 'error: -e|-env parameter is required. Example `--env App-Development`'
+    echo 'error: --path  parameter or --app and --env is required. Example `--path /App/Env/.env`'
+    echo 'error: -a|--app parameter and --env (or --path) is required. Example `--app App`'
+    echo 'error: -e|--env parameter and --env (or --path) is required. Example `--env App-Development`'
     echo ""
     echo ""
     help 1

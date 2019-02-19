@@ -7,12 +7,13 @@ source "${DIR}/.parse-options.bash"
 
 DOT_ENV_FILE=$POSITIONAL
 
-debug $ENV_OUTPUT
+debug "Output format: ${ENV_OUTPUT}"
 
 #run the command
 OUTPUT=$(get_dotenv)
 
 if [ ! -z "${DOT_ENV_FILE}" ]; then
+    debug "Env file: ${DOT_ENV_FILE}"
     echo "$OUTPUT" > ${DOT_ENV_FILE}
     echo $FG_CYAN"DOT ENV FILE SAVED:"
     echo '----------------------------------------'$RESET;

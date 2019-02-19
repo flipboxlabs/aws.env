@@ -37,6 +37,11 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    --path)
+    export PARAMETER_PATH="$2"
+    shift # past argument
+    shift # past value
+    ;;
     -r|--region)
     export AWS_DEFAULT_REGION="$2"
     shift # past argument
@@ -59,24 +64,31 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-PARAMETER_PATH="/${APP}/${ENV}/.env"
+if [ "$HELP" == "YES" ]; then
+    help 0;
+fi
+
+if [ -z "${APP}" ] && [ -z "${PARAMETER_PATH}" ]; then
+    required_options
+    exit 1;
+fi
+
+if [ -z "${ENV}" ] && [ -z "${PARAMETER_PATH}" ]; then
+    required_options
+    exit 1;
+fi
+
+if [ -z "$PARAMETER_PATH" ]; then
+    PARAMETER_PATH="/${APP}/${ENV}/.env"
+fi
+
 YES=("YES" "Y" "yes" "y")
 NO=("NO" "N" "no" "n")
 
 ENV_OUTPUT_OPTIONS=($ENV_OUTPUT_DEFAULT $ENV_OUTPUT_BASH_EXPORT $ENV_OUTPUT_DOCKERFILE)
 
-if [ "$HELP" == "YES" ]; then
-    help 0;
-fi
-
-if [ -z "${APP}" ]; then
-    required_options
-    exit 1;
-fi
-
-if [ -z "${ENV}" ]; then
-    required_options
-    exit 1;
+if [ -z "${ENV_OUTPUT}" ]; then
+    ENV_OUTPUT="default"
 fi
 
 if [ "${DEBUG}" == "YES" ]; then
