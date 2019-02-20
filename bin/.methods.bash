@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 #get file from the param store
 get_dotenv() {

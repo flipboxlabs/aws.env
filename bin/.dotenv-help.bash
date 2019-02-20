@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 help(){
     {
         echo "USAGE: $SCRIPT_NAME [options] <dot env file>"; \

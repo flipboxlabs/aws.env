@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #This is for Elastic Beanstalk
 #The leader server is defined differently than eb defines it.

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #print help
 help(){
     {

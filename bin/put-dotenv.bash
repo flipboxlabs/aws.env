@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 #Currently this uses AWS PARAMETER STORE but this could change
 #You can restrict access to the parameters by specifying the app/env path 
 # in you instance profile or user policies. See policy examples below command
