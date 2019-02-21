@@ -1,12 +1,25 @@
 #!/usr/bin/env bash
 
+UNAMEOUT="$(uname -s)"
+case "${UNAMEOUT}" in
+    Linux*)             MACHINE=linux;;
+    Darwin*)            MACHINE=mac;;
+    MINGW64_NT-10.0*)   MACHINE=mingw64;;
+    *)                  MACHINE="UNKNOWN"
+esac
+
 #get file from the param store
 get_dotenv() {
     # populates PARAMETERS
     get_parameters
+    if [ "${MACHINE}" == "mac" ]; then
+        BASE_64_DECODE='--decode'
+    else
+        BASE_64_DECODE='-d'
+    fi
     for row in $(echo "${PARAMETERS}" | jq -r '.Parameters[] | @base64'); do
         _jq() {
-         echo ${row} | base64 --decode | jq -r ${1}
+         echo ${row} | base64 ${BASE_64_DECODE} | jq -r ${1}
         }
 
         if [ "$ENV_OUTPUT" == "$ENV_OUTPUT_DOCKERFILE" ]; then
