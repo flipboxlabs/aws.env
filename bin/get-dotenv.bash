@@ -18,7 +18,7 @@ if [ ! -z "${DOT_ENV_FILE}" ]; then
     echo $FG_CYAN"DOT ENV FILE SAVED:"
     echo '----------------------------------------'$RESET;
     echo $FG_GREEN
-    cat ${DOT_ENV_FILE}
+    cat ${DOT_ENV_FILE} | sed 's/=.*/=*******/'
     echo $RESET
     echo $FG_CYAN'----------------------------------------'$RESET;
 else
