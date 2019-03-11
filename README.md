@@ -21,10 +21,6 @@ Notice: Deletes currently do not work. If you remove an env var from the file th
 ```bash
 ./bin/dotenv update --app TestApp --env TestApp-Dev
 ```
-*OR (of course)*
-```bash
-./bin/dotenv get-dotenv --app TestApp --env TestApp-Dev > .env
-```
 
 ### Get: `./bin/dotenv get-dotenv`
 #### Print to stdout
