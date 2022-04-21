@@ -9,17 +9,17 @@
 #
 # Examples:
 # You can use this with a cron:
-# `* * * * * sh /path/to/is-leader-server.bash && /usr/local/bin/only-run-this-on-one-server-at-a-time.sh`
+# `* * * * * sh /path/to/is-leader-server.sh && /usr/local/bin/only-run-this-on-one-server-at-a-time.sh`
 
 
 
 if [ -z "$1" ]; then
- echo "Usage is-leader-server.bash <eb-environment-name> <region>";
+ echo "Usage is-leader-server.sh <eb-environment-name> <region>";
  exit 0;
 fi
 
 if [ -z "$2" ]; then
- echo "Usage is-leader-server.bash <eb-environment-name> <region>";
+ echo "Usage is-leader-server.sh <eb-environment-name> <region>";
  exit 0;
 fi
 

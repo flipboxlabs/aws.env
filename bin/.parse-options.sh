@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source "${DIR}/.text-decoration.bash"
-source "${DIR}/.methods.bash"
+source "${DIR}/.text-decoration.sh"
+source "${DIR}/.methods.sh"
 
 POSITIONAL=()
 SCRIPT_NAME=`basename "$0"`

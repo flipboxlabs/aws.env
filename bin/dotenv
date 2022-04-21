@@ -45,19 +45,19 @@ help(){
 if [ $# -gt 0 ]; then
     if [ "$1" == "put-dotenv" ]; then
         shift 1
-        bash $DIR/put-dotenv.bash $@
+        bash $DIR/put-dotenv.sh $@
     elif [ "$1" == "get-dotenv" ]; then
         shift 1
-        bash $DIR/get-dotenv.bash $@
+        bash $DIR/get-dotenv.sh $@
     elif [ "$1" == "update" ]; then
         shift 1
-        bash $DIR/update-dotenv.bash $@
+        bash $DIR/update-dotenv.sh $@
     elif [ "$1" == "delete-parameter" ]; then
         shift 1
-        bash $DIR/delete-parameter.bash $@
+        bash $DIR/delete-parameter.sh $@
     elif [ "$1" == "put-parameter" ]; then
         shift 1
-        bash $DIR/put-parameter.bash $@
+        bash $DIR/put-parameter.sh $@
     elif [ "$1" == "help" ]; then
         help 0
     else

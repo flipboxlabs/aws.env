@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source "${DIR}/.parameter-value-help.bash"
-source "${DIR}/.parse-options.bash"
+source "${DIR}/.parameter-value-help.sh"
+source "${DIR}/.parse-options.sh"
 
 ENV_NAME=${POSITIONAL[0]};
 ENV_VALUE=${POSITIONAL[1]};

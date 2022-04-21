@@ -2,8 +2,8 @@
 
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source "${DIR}/.dotenv-help.bash"
-source "${DIR}/.parse-options.bash"
+source "${DIR}/.dotenv-help.sh"
+source "${DIR}/.parse-options.sh"
 
 DOT_ENV_FILE=$POSITIONAL
 
